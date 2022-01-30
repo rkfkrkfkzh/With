@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.example.with.alram.AlramMapper">
+	<resultMap type="com.example.with.alram.Alram" id="alram">
+		<result property = "alram_num" column = "alram_num"/>
+		<result property = "member_id" column = "member_id"/>
+		<result property = "product_num" column = "product_num"/>
+		<result property = "alram_type" column = "alram_type"/>
+		<result property = "alram_count" column = "alram_count"/>
+		<result property = "alram_add_date" column = "alram_add_date"/>
+		<result property = "alram_href" column = "alram_href"/>
+		<result property = "alram_read" column = "alram_read"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.example.with.alram.Alram">
+		insert into alram values(seq_alram.nextval, #{member_id}, #{product_num}, #{alram_type}, #{alram_count}, sysdate, #{alram_href}, 0)
+	</insert>
+
+	<select id="select" resultType="com.example.with.alram.Alram">
+		select * from alram where alram_num = #{alram_num}
+	</select>
+	
+	<select id="selectListByMember_id" resultMap="alram">
+		select * from alram where member_id = #{member_id} order by alram_num
+	</select>
+	
+	<select id="selectUnreadListByMember_id" resultMap="alram">
+		select * from alram where member_id = #{member_id} and alram_read = 0 order by alram_num
+	</select>
+	
+	<select id="selectByAlram" parameterType="com.example.with.alram.Alram" resultType="com.example.with.alram.Alram">
+		select * from alram where member_id = #{member_id} and alram_type = #{alram_type} and product_num = #{product_num} and alram_read = 0
+	</select>
+	
+	<update id="updateAlramCount">
+		update alram set alram_count = alram_count+1, alram_add_date = sysdate, alram_read = 0 where alram_num = #{alram_num}
+	</update>
+	
+	<update id="updateAlramRead">
+		update alram set alram_read = 1 where alram_num = #{alram_num}
+	</update>
+	
+	<update id="updateAlram" parameterType="com.example.with.alram.Alram">
+		update alram set alram_type = #{alram_type}, alram_href = #{alram_href}, alram_add_date = sysdate where alram_num = #{alram_num}
+	</update>
+	
+	<delete id="delete">
+		delete from alram where alram_num = #{alram_num}
+	</delete>
+	
+	<delete id="deleteByMember_id">
+		delete from alram where member_id = #{member_id}
+	</delete>
+	
+</mapper>
