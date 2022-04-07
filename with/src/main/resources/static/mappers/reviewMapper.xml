@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.with.review.ReviewMapper">
+	<resultMap id="review" type="com.example.with.review.Review">
+		<result property="review_num" column="review_num" />
+		<result property="member_id" column="member_id" />
+		<result property="product_id" column="product_id" />
+		<result property="star" column="star" />
+		<result property="review_content" column="review_content" />
+		<result property="review_date" column="review_date" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.example.with.review.Review">
+		insert into review values(seq_review.nextval, #{member_id}, #{product_id}, #{star}, #{review_content}, sysdate)
+	</insert>
+	<select id="selectById" parameterType="String" resultType="com.example.with.review.Review">
+		select * from review where product_id like #{product_id} order by review_date desc
+	</select>
+	<update id="update" parameterType="com.example.with.review.Review">
+		update member set rate = rate + #{star}, rateCount = rateCount + 1 where id like #{product_id}
+	</update>
+	<update id="updateDel" parameterType="com.example.with.review.Review">
+		update member set rate = rate - #{star}, rateCount = rateCount - 1 where id like #{product_id}
+	</update>
+	<delete id="delete">
+		delete from review where review_num = #{review_num} 
+	</delete>
+</mapper>
