@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.with.wish.WishMapper">
+
+   <resultMap type="com.example.with.wish.Wish" id="wish">
+      <result column="wish_num" property="wish_num" />
+      <result column="member_id" property="member_id" />
+      <result column="product_num" property="product_num" />
+   </resultMap>
+   
+   <resultMap type="com.example.with.product.Product" id="product">
+      <result property="product_num" column="product_num" />
+      <result property="product_title" column="product_title" />
+      <result property="product_price" column="product_price" />
+      <result property="product_content" column="product_content" />
+      <result property="category1_num" column="category1_num" />
+      <result property="category2_num" column="category2_num" />
+      <result property="category3_num" column="category3_num" />
+      <result property="product_writer" column="product_writer" />
+      <result property="product_add_date" column="product_add_date" />
+      <result property="product_hit" column="product_hit" />
+      <result property="product_type" column="product_type" />
+   </resultMap>
+   
+   <insert id="insertWish" parameterType="com.example.with.wish.Wish">
+      insert into wish values(#{wish_num}, #{product_num}, #{member_id})
+   </insert>
+   
+   <select id="selectByMemberId" parameterType="String" resultMap="wish"> 
+      select * from wish where member_id=#{member_id} order by wish_num   
+   </select>
+   
+   <select id="selectByProductNum" resultMap="wish">
+      select * from wish where product_num=#{product_num} order by wish_num       
+   </select>
+   
+   
+   <select id="selectByMemberIdProductNum" resultMap="wish">
+      select * from wish where member_id=#{member_id} and product_num=#{product_num} order by wish_num
+   </select>
+   
+   <delete id="deleteWish">
+      delete from wish where wish_num=#{wish_num}
+   </delete>
+   
+   <delete id="deleteWishByProductNum">
+      delete from wish where member_id=#{member_id} and product_num=#{product_num}
+   </delete>
+   
+   <delete id="deleteAllWish" parameterType="String">
+      delete from wish where member_id=#{member_id}
+   </delete>
+   
+   <!-- delete id="deleteProductAndWish" 제품 삭제 시 찜 목록까지 삭제가 필요? -->
+   
+   <select id="getNum" resultType="int">
+      select seq_wish.nextval from dual
+   </select>
+   
+</mapper>
