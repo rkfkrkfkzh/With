@@ -24,9 +24,10 @@ public class NoticeController {
 	@Autowired
 	private MemberService mService;
 	@Autowired
-	private HttpSession session;
+	private HttpSession session;  //HttpSession을 주입받는다고 선언하는 것만으로는 Servlet Container에게 Session을 달라고 요청하지 않습니다. 
+	//setAttribute 혹은 getAttribute 같은 api를 호출하는 시점에 요청/생성합니다. 
 	
-	@GetMapping(value = "/notice/notice_writing")
+	@GetMapping(value = "/notice/notice_writing") // "notice/notice_writing" 요청이 들어오면 아래의 함수를 실행
 	public void noticeForm() {
 		
 	}
