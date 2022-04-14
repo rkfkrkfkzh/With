@@ -11,7 +11,33 @@
 	var cPwd = false;
 	var cNick = false;
 	var cTel = false;
+	function inputPhoneNumber(obj) {
 
+		var number = obj.value.replace(/[^0-9]/g, "");
+
+		var phone = "";
+
+		if (number.length < 4) {
+			return number;
+		} else if (number.length < 7) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3);
+		} else if (number.length < 11) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 3);
+			phone += "-";
+			phone += number.substr(6);
+		} else {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 4);
+			phone += "-";
+			phone += number.substr(7);
+		}
+		obj.value = phone;
+	}
 	function allCheck() {
 		if (cId && cPwd && cNick && cTel) {
 			return true;
@@ -29,6 +55,7 @@
 										function() {
 											var value = $(this).val();
 											var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
 											if (!regExp.test(value)) {
 												$("#id").addClass("is-invalid");
 												$("#id")
@@ -89,7 +116,7 @@
 								.change(
 										function() {
 											var value = $(this).val();
-											var regExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+											var regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 
 											if (!regExp.test(value)) {
 												$("#tel")
@@ -122,6 +149,7 @@
 										cTel = false;
 									}
 								}
+
 							});
 						});
 					});
@@ -162,7 +190,7 @@
 
 				</div>
 				<div class="col-md-12 mb-3" style="text-align: right; padding-left: 15%; padding-right: 15%">
-					<input type="text" id="tel" required name="tel" class="form-control w-100" placeholder="휴대폰 번호( - 제외)">
+					<input type="text" id="tel" required name="tel" class="form-control w-100" placeholder="휴대폰 번호( - 제외)" onKeyup="inputPhoneNumber(this);">
 					<div class="invalid-feedback">휴대폰 번호를 정확히 입력해주세요(-제외)</div>
 				</div>
 				<div class="col-md-12 mb-3" style="padding-left: 15%; padding-right: 15%">
