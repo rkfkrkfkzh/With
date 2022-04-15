@@ -11,33 +11,11 @@
 	var cPwd = false;
 	var cNick = false;
 	var cTel = false;
-	function inputPhoneNumber(obj) {
-
-		var number = obj.value.replace(/[^0-9]/g, "");
-
-		var phone = "";
-
-		if (number.length < 4) {
-			return number;
-		} else if (number.length < 7) {
-			phone += number.substr(0, 3);
-			phone += "-";
-			phone += number.substr(3);
-		} else if (number.length < 11) {
-			phone += number.substr(0, 3);
-			phone += "-";
-			phone += number.substr(3, 3);
-			phone += "-";
-			phone += number.substr(6);
-		} else {
-			phone += number.substr(0, 3);
-			phone += "-";
-			phone += number.substr(3, 4);
-			phone += "-";
-			phone += number.substr(7);
+	const autoHyphen2 = (target) => {
+		 target.value = target.value
+		   .replace(/[^0-9]/g, '')
+		  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 		}
-		obj.value = phone;
-	}
 	function allCheck() {
 		if (cId && cPwd && cNick && cTel) {
 			return true;
@@ -96,27 +74,45 @@
 											}
 										});
 
-						$("#pwd, #pwd2").change(function() {
-							var p1 = $("#pwd").val();
-							var p2 = $("#pwd2").val();
+						$("#pwd, #pwd2")
+								.change(
+										function() {
+											var p1 = $("#pwd").val();
+											var p2 = $("#pwd2").val();
 
-							if (p1 != p2) {
-								$("#pwd1").addClass("is-invalid");
-								$("#pwd2").addClass("is-invalid");
-								$("#pwd2").focus();
-								cPwd = false;
-							} else {
-								$("#pwd1").removeClass("is-invalid");
-								$("#pwd2").removeClass("is-invalid");
-								cPwd = true;
-							}
-						});
+											var value = $(this).val();
+											var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+											if (!regExp.test(value)) {
+												$("#pwd")
+														.addClass("is-invalid");
+												cPwd = false;
+											} else {
+												$("#pwd").removeClass(
+														"is-invalid");
+												cPwd = true;
+											}
+											if (p1 != p2) {
+												$("#pwd1").addClass(
+														"is-invalid");
+												$("#pwd2").addClass(
+														"is-invalid");
+												$("#pwd2").focus();
+												cPwd = false;
+											} else {
+												$("#pwd1").removeClass(
+														"is-invalid");
+												$("#pwd2").removeClass(
+														"is-invalid");
+												cPwd = true;
+											}
+										});
 
 						$("#tel")
 								.change(
 										function() {
 											var value = $(this).val();
-											var regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+											var regExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
 											if (!regExp.test(value)) {
 												$("#tel")
@@ -172,7 +168,7 @@
 				</div>
 				<div class="col-md-12 mb-3" style="text-align: right; padding-left: 15%; padding-right: 15%">
 					<input type="password" id="pwd" required name="pwd" class="form-control w-100" placeholder="비밀번호">
-					<div class="invalid-feedback">비밀번호가 다릅니다.</div>
+					<div class="invalid-feedback">최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자를 넣어주세요.</div>
 				</div>
 				<div class="col-md-12 mb-3" style="text-align: right; padding-left: 15%; padding-right: 15%">
 					<input type="password" id="pwd2" required class="form-control w-100" placeholder="비밀번호 확인">
@@ -190,7 +186,7 @@
 
 				</div>
 				<div class="col-md-12 mb-3" style="text-align: right; padding-left: 15%; padding-right: 15%">
-					<input type="text" id="tel" required name="tel" class="form-control w-100" placeholder="휴대폰 번호( - 제외)" onKeyup="inputPhoneNumber(this);">
+					<input type="text" id="tel" required name="tel" class="form-control w-100" placeholder="휴대폰 번호( - 제외)" oninput="autoHyphen2(this)" maxlength="13">
 					<div class="invalid-feedback">휴대폰 번호를 정확히 입력해주세요(-제외)</div>
 				</div>
 				<div class="col-md-12 mb-3" style="padding-left: 15%; padding-right: 15%">
