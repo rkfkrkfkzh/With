@@ -8,7 +8,7 @@ public class WithApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WithApplication.class, args);
-		/**
+		/*
 		 * 보통 SpringApplication을 실행 할 때 위 한 줄을 추가한다. 하지만 이렇게 하면 SpringApplication이 제공하는
 		 * 다양한 기능을 커스터마이징해서 사용하기 어렵다.
 		 **/
