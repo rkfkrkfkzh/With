@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>with: ¸ðµÎ ÇÔ²² - °øÁö»çÇ× ÀÛ¼º</title>
+<title>with: ëª¨ë‘ í•¨ê»˜ - ê³µì§€ì‚¬í•­ ìž‘ì„±</title>
 <c:import url="../head.jsp" />
 </head>
 <body>
@@ -13,19 +14,19 @@
 	<section class="py-5">
 		<div class="container">
 			<div class="title py-3">
-				<h1>°øÁö»çÇ× ÀÛ¼º</h1>
+				<h1>ê³µì§€ì‚¬í•­ ìž‘ì„±</h1>
 			</div>
 			<div class="write-form col-md-12">
 				<form method="post" id="noticeForm" action="${pageContext.request.contextPath}/notice/notice_writing">
 					<div class="mb-3">
-						<label for="title" class="form-label">Á¦¸ñ</label> <input type="text" class="form-control w-100" id="title" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä." name="notice_title" />
+						<label for="title" class="form-label">ì œëª©</label> <input type="text" class="form-control w-100" id="title" placeholder="ì œëª©ì„ ìž…ë ¥í•˜ì„¸ìš”." name="notice_title" />
 					</div>
 					<div class="mb-3">
-						<label for="content" class="form-label">³»¿ë</label>
-						<textarea class="form-control w-100" id="content" rows="14" placeholder="³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä." name="notice_content"></textarea>
+						<label for="content" class="form-label">ë‚´ìš©</label>
+						<textarea class="form-control w-100" id="content" rows="14" placeholder="ë‚´ìš©ì„ ìž…ë ¥í•˜ì„¸ìš”." name="notice_content"></textarea>
 					</div>
-					<button class="btn btn-danger" type="reset">ÃÊ±âÈ­</button>
-					<button class="btn btn-primary" type="submit">ÀÛ¼º</button>
+					<button class="btn btn-danger" type="reset">ì´ˆê¸°í™”</button>
+					<button class="btn btn-primary" type="submit">ìž‘ì„±</button>
 				</form>
 			</div>
 		</div>

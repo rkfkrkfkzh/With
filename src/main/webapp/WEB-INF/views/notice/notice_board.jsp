@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>with: ¸ðµÎ ÇÔ²² - °øÁö»çÇ× ¸ñ·Ï</title>
+<title>with: ëª¨ë‘ í•¨ê»˜ - ê³µì§€ì‚¬í•­ ëª©ë¡</title>
 <c:import url="../head.jsp" />
 </head>
 <body>
@@ -13,20 +14,20 @@
 	<section class="py-5">
 		<div class="container">
 			<div class="py-3">
-				<h1>°øÁö»çÇ× ¸ñ·Ï</h1>
+				<h1>ê³µì§€ì‚¬í•­ ëª©ë¡</h1>
 			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="th_num">¹øÈ£</th>
-						<th class="th_title">Á¦¸ñ</th>
-						<th class="th_date">ÀÛ¼ºÀÏ</th>
+						<th class="th_num">ë²ˆí˜¸</th>
+						<th class="th_title">ì œëª©</th>
+						<th class="th_date">ìž‘ì„±ì¼</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:if test="${empty list }">
 						<tr>
-							<td colspan="5">µî·ÏµÈ °øÁö°¡ ¾ø½À´Ï´Ù.</td>
+							<td colspan="5">ë“±ë¡ëœ ê³µì§€ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty list}">
@@ -45,7 +46,7 @@
 			<!--<c:import url="${pageContext.request.contextPath}/api/member/getUserType" var="userType" />-->
 			<c:if test="${sessionScope.type == 2}">
 				<div class="d-flex justify-content-end">
-					<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/notice/notice_writing'">°øÁö»çÇ× ÀÛ¼º</button>
+					<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/notice/notice_writing'">ê³µì§€ì‚¬í•­ ìž‘ì„±</button>
 				</div>
 			</c:if>
 

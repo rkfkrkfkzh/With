@@ -57,6 +57,8 @@
 
 	</delete>
 
-
+<select id="totalRecord"  resultType="java.lang.Integer">
+	select count(*) from notice
+</select>
 
 </mapper>	

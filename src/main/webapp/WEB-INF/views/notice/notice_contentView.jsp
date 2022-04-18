@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>with: ¸ðµÎ ÇÔ²² - ${n.notice_title }</title>
+<title>with: ëª¨ë‘ í•¨ê»˜ - ${n.notice_title }</title>
 <c:import url="../head.jsp" />
 </head>
 <body>
@@ -13,7 +14,7 @@
 	<section class="py-5">
 		<div class="container">
 			<div class="py-3">
-				<h1>°øÁö»çÇ×</h1>
+				<h1>ê³µì§€ì‚¬í•­</h1>
 			</div>
 			<c:import url="/notice/Board"></c:import>
 			<div class="col-md-12">
@@ -24,7 +25,7 @@
 					</div>
 
 					<div class="mb-3">
-						<fmt:formatDate value="${n.notice_date}" pattern="YYYY³â MM¿ù ddÀÏ hh:mm" />
+						<fmt:formatDate value="${n.notice_date}" pattern="YYYYë…„ MMì›” ddì¼ hh:mm" />
 					</div>
 
 					<hr class="dropdown-divider" />
@@ -34,9 +35,9 @@
 
 					<div class="mb-3">
 						<c:if test="${type==2}">
-							<button class="btn btn-danger del-btn" type="button" onclick="location.href=`${pageContext.request.contextPath}/notice/notice_delete?notice_num=${n.notice_num}`">»èÁ¦</button>
+							<button class="btn btn-danger del-btn" type="button" onclick="location.href=`${pageContext.request.contextPath}/notice/notice_delete?notice_num=${n.notice_num}`">ì‚­ì œ</button>
 						</c:if>
-						<button class="btn btn-primary list-btn" type="button" onClick="history.back();">¸ñ·ÏÀ¸·Î</button>
+						<button class="btn btn-primary list-btn" type="button" onClick="history.back();">ëª©ë¡ìœ¼ë¡œ</button>
 					</div>
 				</form>
 
