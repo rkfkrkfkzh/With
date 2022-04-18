@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.example.with.report.ReportMapper">
+	<resultMap type="com.example.with.report.Report" id="report">
+		<result column="report_num" property="report_num" />
+		<result column="report_title" property="report_title" />
+		<result column="report_content" property="report_content" />
+		<result column="report_date" property="report_date" />
+		<result column="report_writer_id" property="report_writer_id" />
+		<result column="report_user_id" property="report_user_id" />
+	</resultMap>
+	
+	<insert id="insertReport" parameterType="com.example.with.report.Report">
+		insert into report values( seq_report.nextval, #{product_num}, #{report_title}, #{report_content}, sysdate , #{report_writer_id}, #{report_user_id} )
+	</insert>
+
+	
+	<select id="selectAll" resultMap="report">
+		select * from report 
+	</select>
+	
+	<update id="update" parameterType="com.example.with.report.Report">
+		update report set report_title=#{report_title}, report_content=#{report_contenet} where report_writer_id=#{report_writer_id}
+	</update>
+	
+	<select id="select" resultMap="report">
+		select * from report where report_num=#{report_num}
+	</select>
+	
+	<select id="selectCount" resultType="int" parameterType="String">
+		select count(*) from report where report_user_id=#{report_user_id}
+	</select>
+	
+	<delete id="delete" parameterType="com.example.with.report.Report">
+		delete report where report_num=#{report_num}
+	</delete>
+
+</mapper>
