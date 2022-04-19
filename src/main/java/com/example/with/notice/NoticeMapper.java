@@ -1,40 +1,28 @@
 package com.example.with.notice;
 
+import com.example.with.product.Product;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.session.SqlSession;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.prefs.Preferences.factory;
 
 @Mapper
 public interface NoticeMapper { // @Mapper 어노테이션을 붙이면 Mapper 인터페이스로 인식합니다.
 
-	void insertNotice(Notice n);
+    void insertNotice(Notice n);
 
-	List selectAllNotice();
+    List selectAllNotice();
 
-	Notice selectNotice(int notice_num);
+    Notice selectNotice(int notice_num);
 
-	void updateNotice(Notice n);
+    void updateNotice(Notice n);
 
-	void deleteNotice(int notice_num);
+    void deleteNotice(int notice_num);
 
-	public static int totalRecord(){
-		SqlSession session = factory.openSession();
-		int total = session.selectOne("notice.totalRecord");
-		session.close();
-		return total;
-	}
-	public static List<Notice> listNotice(int start, int end){
-		HashMap<String, Integer>map = new HashMap<String, Integer>();
-		map.put("start",start);
-		map.put("end",end);
+    // 제품 목록의 전체 갯수
+    int selectListSize();
 
-		SqlSession session = factory.openSession();
-		List<Notice> list = session.selectList("notice.findall", map);
-		session.close();
-		return list;
-	}
+    // 원하는 목록 수 만큼 불러오고 페이징 기능과 연동
+    ArrayList<Notice> selectListByLimit(int start, int last);
 }

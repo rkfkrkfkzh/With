@@ -2,17 +2,20 @@ package com.example.with.notice;
 
 import com.example.with.member.Member;
 import com.example.with.member.MemberService;
+import com.example.with.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 @Controller //해당 클래스 컨트롤러로 동작
 public class NoticeController {
@@ -22,13 +25,10 @@ public class NoticeController {
     @Autowired
     private MemberService mService;
     @Autowired
+    private HttpServletRequest request;
+    @Autowired
     private HttpSession session;  //HttpSession을 주입받는다고 선언하는 것만으로는 Servlet Container에게 Session을 달라고 요청하지 않습니다.
     //setAttribute 혹은 getAttribute 같은 api를 호출하는 시점에 요청/생성합니다.
-
-    public static int pageSIZE = 10;
-    public static int totalRecord = 0;
-    public static int totalPage = 1;
-
 
     @GetMapping(value = "/notice/notice_writing") // "notice/notice_writing" 요청이 들어오면 아래의 함수를 실행
     public void noticeForm() {
@@ -62,17 +62,18 @@ public class NoticeController {
 
     // 뷰의 요청 경로 지정 요청경로("/notice/notice_board")
     @RequestMapping(value = "/notice/notice_board")
-    public ModelAndView list() {
-        ModelAndView mav = new ModelAndView("/notice/notice_board");//뷰의 이름
-        ArrayList<Notice> list = (ArrayList<Notice>) nService.selectAllNotice();
-        String id = (String) session.getAttribute("id");// getAttribute 메서드로 세션에 저장된 값을 조회할 수 있다.
-        Member m = mService.getMember(id);
-        int type = m.getType();
-        session.setAttribute("type", type);// setAttribute는 ("name", value) 객체 Object를 저장하는 메서드다.
-        System.out.println(list);
-        Collections.reverse(list); // Collections.reverse() 메소드는 파라미터로 받은 List를 거꾸로 뒤집습니다.
-        mav.addObject("list", list); //뷰로 보낼 데이터 값
-        return mav; // ModelAndView 객체 반환
+    public String list(Model model, @RequestParam(defaultValue = "1", required = false) int n) {
+        Page page = new Page(n, nService.getNoticeListSize());
+        page.pageInfo();
+        if (n > page.getMaxPage() && page.getMaxPage() != 0) {
+            return "redirect:/notice/notice_board?p=" + page.getMaxPage();
+        } else {
+            List<Notice> list = nService.getNoticeListByLimits(page.getStartList(), page.getStartList() + page.getListSize());
+            model.addAttribute("list", list);
+            model.addAttribute("page", page);
+            return request.getContextPath() + request.getRequestURI();
+        }
+
     }
 
     // 뷰의 요청 경로 지정 요청경로("/notice/notice_edit")
@@ -89,4 +90,11 @@ public class NoticeController {
         return "redirect:/notice/notice_board";
     }
 
+    public ArrayList<Notice> subList(Page page, ArrayList<Notice> list) {
+        if (page.getCurrentPage() == page.getMaxPage()) {
+            return new ArrayList<Notice>(list.subList(page.getStartList(), page.getListCnt()));
+        } else {
+            return new ArrayList<Notice>(list.subList(page.getStartList(), page.getStartList() + page.getListSize()));
+        }
+    }
 }
