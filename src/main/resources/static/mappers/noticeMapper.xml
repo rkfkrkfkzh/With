@@ -74,7 +74,7 @@
     <select id="selectListByNotice_num" parameterType="int" resultMap="Notice">
         select *
         from notice
-        where notice_num like '%${notice_num}%'
+        where notice_num = '${notice_num}'
         order by notice_num desc
     </select>
 

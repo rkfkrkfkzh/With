@@ -63,13 +63,13 @@ public class NoticeController {
 
     // 뷰의 요청 경로 지정 요청경로("/notice/notice_board")
     @RequestMapping(value = "/notice/notice_board")
-    public String list(Model model, @RequestParam(defaultValue = "1", required = false) int n) {
-        Page page = new Page(n, nService.getNoticeListSize());
+    public String list(Model model, @RequestParam(defaultValue = "1", required = false) int p) {
+        Page page = new Page(p, nService.getNoticeListSize());
         page.pageInfo();
         String id = (String) session.getAttribute("id");
         Member m = mService.getMember(id);
         int type = m.getType();
-        if (n > page.getMaxPage() && page.getMaxPage() != 0) {
+        if (p > page.getMaxPage() && page.getMaxPage() != 0) {
             return "redirect:/notice/notice_board?p=" + page.getMaxPage();
         } else {
             List<Notice> list = nService.getNoticeListByLimits(page.getStartList(), page.getStartList() + page.getListSize());

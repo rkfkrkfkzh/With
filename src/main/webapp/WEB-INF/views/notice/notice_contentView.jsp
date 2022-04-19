@@ -34,9 +34,9 @@
 					</div>
 
 					<div class="mb-3">
-						<c:if test="${type==2}">
+<%--						<c:if test="${type==2}">--%>
 							<button class="btn btn-danger del-btn" type="button" onclick="location.href=`${pageContext.request.contextPath}/notice/notice_delete?notice_num=${n.notice_num}`">삭제</button>
-						</c:if>
+<%--						</c:if>--%>
 						<button class="btn btn-primary list-btn" type="button" onClick="history.back();">목록으로</button>
 					</div>
 				</form>
