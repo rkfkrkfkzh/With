@@ -6,7 +6,7 @@ public class Page {
 	private boolean prev, next;
 
 //	각 페이지에 표시할 제품의 개수 / 페이지 목록의 개수
-	private int listSize = 10, rangeSize = 10, startList;
+	private int listSize = 6, rangeSize = 10, startList;
 
 	public Page() {
 	}
