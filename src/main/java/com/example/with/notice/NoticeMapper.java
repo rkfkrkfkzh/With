@@ -29,6 +29,5 @@ public interface NoticeMapper { // @Mapper 어노테이션을 붙이면 Mapper �
     ArrayList<Notice> selectListByNotice_num(int notice_int);
     // 공지 제목으로 검색
     ArrayList<Notice> selectListByNotice_title(String notice_title);
-    // 공지 날짜로 검색
-    ArrayList<Notice> selectListByNotice_date(Date notice_date);
+
 }

@@ -5,8 +5,8 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,12 +64,10 @@ public class NoticeService {
     public ArrayList<Notice> getNoticeListByNotice_num(int notice_num){
         return setNoticeData(mapper.selectListByNotice_num(notice_num));
     }
-    //날짜로 검색
-    public ArrayList<Notice> getNoticeListByNotice_date(Date notice_date){
-        return setNoticeData(mapper.selectListByNotice_date(notice_date));
-    }
+
     //전체목록 갯수단위,페이징기능
     public ArrayList<Notice> getNoticeListByLimits(int start, int last) {
         return setNoticeData(mapper.selectListByLimit(start, last));
     }
+
 }

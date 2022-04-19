@@ -2,17 +2,34 @@
          pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="EUC-KR">
     <title>with: 모두 함께 - 공지사항 목록</title>
-    <c:import url="../head.jsp"/>
+    <c:import url="../head.jsp"></c:import>
 </head>
 <body>
-<c:import url="../header.jsp"/>
+<c:import url="../header.jsp"></c:import>
 <section class="py-5">
     <div class="container">
+        <!-- 검색 Form -->
+        <div class="search-form text-center">
+            <form action="${pageContext.request.contextPath}/notice/search"
+                  method="get" onsubmit="return checkSearch()" id="nSearchForm">
+                <select class="form-select" name="q" id="q" aria-label="query">
+                    <option ${q=='notice_title' ? 'selected' : '' }
+                            value="notice_title">공지 이름</option>
+                    <option ${q=='notice_num' ? 'selected' : '' }
+                            value="notice_num">공지 번호</option></select>
+
+                <input class="form-control" type="text" placeholder="검색..."
+                       name="value" aria-label="검색"/>
+                <button type="submit" class="btn btn-outline-primary">검색</button>
+            </form>
+        </div>
+
         <div class="py-3">
             <h1>공지사항 목록</h1>
         </div>
@@ -58,7 +75,8 @@
         <nav class="py-5 w-100 d-flex justify-content-center">
             <ul class="pagination">
                 <li class="page-item ${page.prev?'':'disabled'}">
-                    <a class="page-link" href="${pageContext.request.contextPath}/notice/notice_board?p=${page.startPage-1}">
+                    <a class="page-link"
+                       href="${pageContext.request.contextPath}/notice/notice_board?p=${page.startPage-1}">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 </li>
@@ -69,7 +87,8 @@
                     </li>
                 </c:forEach>
                 <li class="page-item ${page.next?'':'disabled'}">
-                    <a class="page-link" href="${pageContext.request.contextPath}/notice/notice_board?p=${page.endPage+1}">
+                    <a class="page-link"
+                       href="${pageContext.request.contextPath}/notice/notice_board?p=${page.endPage+1}">
                         <i class="fas fa-chevron-right"></i>
                     </a>
                 </li>

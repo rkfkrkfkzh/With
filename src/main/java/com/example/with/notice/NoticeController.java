@@ -2,7 +2,6 @@ package com.example.with.notice;
 
 import com.example.with.member.Member;
 import com.example.with.member.MemberService;
-import com.example.with.product.Product;
 import com.example.with.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,6 +93,25 @@ public class NoticeController {
     public String delete(@RequestParam(value = "notice_num") int notice_num) { //@RequestParam("가져올 데이터 이름")[데이터타입][가져온데이터를 담을 변수]
         nService.delete(notice_num);
         return "redirect:/notice/notice_board";
+    }
+
+    @GetMapping("/notice/search")
+    public String search(@RequestParam(required = false) String q, @RequestParam(required = false) String value, Model model) {
+        if (q != null && value != null) {
+            request.setAttribute("q", q);
+            request.setAttribute("value", value);
+            ArrayList<Notice> list = null;
+            if (q.equals("notice_title")) {
+                list = nService.getNoticeListByNotice_title(value);
+            } else if (q.equals("notice_num")) {
+                list = nService.getNoticeListByNotice_num(Integer.parseInt(value));
+
+            }
+            model.addAttribute("list", list);
+            return "/notice/notice_board";
+        } else {
+            return "redirect:/notice/notice_board";
+        }
     }
 
     public ArrayList<Notice> subList(Page page, ArrayList<Notice> list) {

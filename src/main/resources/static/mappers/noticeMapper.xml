@@ -77,10 +77,5 @@
         where notice_num like '%${notice_num}%'
         order by notice_num desc
     </select>
-    <select id="selectListByNotice_date" parameterType="Date" resultMap="Notice">
-        select *
-        from notice
-        where notice_date like '%${notice_date}%'
-        order by notice_num desc
-    </select>
+
 </mapper>	
