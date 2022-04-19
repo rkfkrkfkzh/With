@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller //해당 클래스 컨트롤러로 동작
@@ -65,6 +66,9 @@ public class NoticeController {
     public String list(Model model, @RequestParam(defaultValue = "1", required = false) int n) {
         Page page = new Page(n, nService.getNoticeListSize());
         page.pageInfo();
+        String id = (String) session.getAttribute("id");
+        Member m = mService.getMember(id);
+        int type = m.getType();
         if (n > page.getMaxPage() && page.getMaxPage() != 0) {
             return "redirect:/notice/notice_board?p=" + page.getMaxPage();
         } else {
@@ -75,6 +79,7 @@ public class NoticeController {
         }
 
     }
+
 
     // 뷰의 요청 경로 지정 요청경로("/notice/notice_edit")
     @RequestMapping(value = "/notice/notice_edit")
