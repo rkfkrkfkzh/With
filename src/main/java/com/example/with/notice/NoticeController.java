@@ -69,6 +69,7 @@ public class NoticeController {
         String id = (String) session.getAttribute("id");
         Member m = mService.getMember(id);
         int type = m.getType();
+        session.setAttribute("type", type);
         if (p > page.getMaxPage() && page.getMaxPage() != 0) {
             return "redirect:/notice/notice_board?p=" + page.getMaxPage();
         } else {

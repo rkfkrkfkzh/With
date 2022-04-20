@@ -64,13 +64,13 @@
             </tbody>
         </table>
         <!--<c:import url="${pageContext.request.contextPath}/api/member/getUserType" var="userType" />-->
-<%--        <c:if test="${sessionScope.type == 2}">--%>
+        <c:if test="${sessionScope.type == 2}">
             <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary"
                         onclick="location.href='${pageContext.request.contextPath}/notice/notice_writing'">공지사항 작성
                 </button>
             </div>
-<%--        </c:if>--%>
+        </c:if>
 
     </div>
     <c:if test="${not empty page}">
