@@ -73,7 +73,7 @@ public class MemberController {
 
 	@RequestMapping("member/main")
 	public String main2(Model model) {
-		List<Product> list = pService.getProductListByLimits(0, 8);
+		List<Product> list = pService.getProductListByLimits(0, 100);
 		model.addAttribute("list", list);
 		return "index";
 	}

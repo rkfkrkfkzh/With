@@ -51,11 +51,12 @@
         WHERE notice_num = #{notice_num}
 
     </delete>
-
+    <!--    공지 목록의 전체 갯수-->
     <select id="selectListSize" resultType="int">
         select count(*)
         from notice
     </select>
+    <!--    원하는 목록 수 만큼 불러오고 페이징 기능과 연동-->
     <select id="selectListByLimit" resultMap="Notice">
         select *
         from (
@@ -65,12 +66,14 @@
                        order by notice_num desc) list) data
         where num between #{start} and #{last}
     </select>
+    <!--    공지 이름으로 검색-->
     <select id="selectListByNotice_title" parameterType="String" resultMap="Notice">
         select *
         from notice
         where notice_title like '%${notice_title}%'
         order by notice_num desc
     </select>
+    <!--    공지 번호로 검색-->
     <select id="selectListByNotice_num" parameterType="int" resultMap="Notice">
         select *
         from notice
@@ -78,4 +81,4 @@
         order by notice_num desc
     </select>
 
-</mapper>	
+</mapper>
