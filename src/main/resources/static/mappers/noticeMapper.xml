@@ -10,6 +10,7 @@
         <result property="notice_title" column="notice_title"/>
         <result property="notice_content" column="notice_content"/>
         <result property="notice_date" column="notice_date"/>
+        <result property="display_num" column="display_num"/>
     </resultMap>
 
     <!-- 공지사항 등록 -->
@@ -17,6 +18,7 @@
             parameterType="com.example.with.notice.Notice">
         insert into notice
         VALUES (seq_notice.nextval,
+                #{display_num},
                 #{notice_title},
                 #{notice_content},
                 sysdate)
@@ -42,6 +44,13 @@
         UPDATE notice
         SET notice_title   = #{notice_title},
             notice_content = #{notice_content} notice_num = #{notice_num}
+    </update>
+
+    <update id="sortDisplayNumber" parameterType="int">
+        update notice
+        set display_num = display_num - 1
+        where notice_num > #{base}
+
     </update>
 
     <!-- 삭제 -->
@@ -86,6 +95,11 @@
         from notice
         where notice_date = #{notice_date}
         order by notice_num desc
+    </select>
+
+    <select id="getMaxDisplayNumber" resultType="int">
+        select max(display_num)
+        from notice
     </select>
 
 </mapper>

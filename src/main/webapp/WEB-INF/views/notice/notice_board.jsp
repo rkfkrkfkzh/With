@@ -57,7 +57,7 @@
             <c:if test="${not empty list}">
                 <c:forEach var="n" items="${list}" varStatus="status">
                     <tr>
-                        <td>${n.notice_num}</td>
+                        <td>${n.display_num}</td>
                         <td>
                             <a class="link"
                                href="${pageContext.request.contextPath}/notice/notice_contentView?notice_num=${n.notice_num}"> ${n.notice_title}</a>

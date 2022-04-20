@@ -9,7 +9,16 @@ public class Notice {
 	private String notice_title;
 	private String notice_content;
 	private Date notice_date;
-	
+	private int display_num;
+
+	public int getDisplay_num() {
+		return display_num;
+	}
+
+	public void setDisplay_num(int display_num) {
+		this.display_num = display_num;
+	}
+
 	public Notice() {
 		super();
 	}
@@ -20,12 +29,13 @@ public class Notice {
 		this.notice_content = notice_content;
 	}
 
-	public Notice(int notice_num, String notice_title, String notice_content, Date notice_date) {
+	public Notice(int notice_num, String notice_title, String notice_content, Date notice_date, int display_num) {
 		super();
 		this.notice_num = notice_num;
 		this.notice_title = notice_title;
 		this.notice_content = notice_content;
 		this.notice_date = notice_date;
+		this.display_num = display_num;
 	}
 
 	public int getNotice_num() {

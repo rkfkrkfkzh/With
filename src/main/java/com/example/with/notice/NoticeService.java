@@ -17,8 +17,17 @@ public class NoticeService {
     @Autowired
     private MemberService mService;
 
+    public Integer getMaxDisplayNumber(){
+        Integer maxDisplayNumber = mapper.getMaxDisplayNumber();
+        if (maxDisplayNumber==null||maxDisplayNumber==0)
+            return 1;
+        return maxDisplayNumber+1;
+    }
+
     public void addNotice(Notice n) {
-        mapper.insertNotice(n); // NoticeMapper insertNotice 매퍼 호출
+        Integer maxDisplayNumber = getMaxDisplayNumber();
+        n.setDisplay_num(maxDisplayNumber);
+        mapper.insertNotice(n);// NoticeMapper insertNotice 매퍼 호출
     }
 
     public List selectAllNotice() {
@@ -35,6 +44,8 @@ public class NoticeService {
 
     public void delete(int notice_num) {
         mapper.deleteNotice(notice_num);
+        mapper.sortDisplayNumber(notice_num);
+
     }
 
     public int getNoticeListSize() {
