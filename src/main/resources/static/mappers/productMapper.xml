@@ -1,99 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.with.product.ProductMapper">
-	<resultMap type="com.example.with.product.Product" id="product">
-		<result property = "product_num" column = "product_num"/>
-		<result property = "product_writer" column = "product_writer"/>
-		<result property = "product_nick" column = "product_nick"/>
-		<result property = "product_title" column = "product_title"/>
-		<result property = "product_price" column = "product_price"/>
-		<result property = "product_content" column = "product_content"/>
-		<result property = "category1_num" column = "category1_num"/>
-		<result property = "category2_num" column = "category2_num"/>
-		<result property = "category3_num" column = "category3_num"/>
-		<result property = "product_type" column = "product_type"/>
-		<result property = "product_tradetype" column="product_tradetype" />
-		<result property = "product_add_date" column = "product_add_date"/>
-		<result property = "product_hit" column = "product_hit"/>
-	</resultMap>
-	
-	
-	<insert id="insert" parameterType="com.example.with.product.Product">
-		insert into product values(seq_product.nextval, #{product_writer}, #{product_nick}, #{product_title}, #{product_price}, #{product_content},
-		#{category1_num}, #{category2_num}, #{category3_num}, 0, #{product_tradetype}, sysdate, 0)
-	</insert>
-	
-	<select id="selectListSize" resultType="int">
-		select count(*) from product
-	</select>
-	
-	<select id="select" resultType="com.example.with.product.Product">
-		select * from product where product_num = #{product_num}
-	</select>
-	
-	<select id="selectList" resultMap="product">
-		select * from product order by product_num desc
-	</select>
-	
-	<select id="selectListByLimit" resultMap="product">
-		select * from (
-		select rownum as num, list.* from (select * from product order
-		by product_num desc) list ) data where num between #{start} and #{last}
-	</select>
-	
-	<select id="selectListByProduct_title" parameterType="String" resultMap="product">
-		select * from product where product_title like '%${product_title}%' order by product_num desc
-	</select>
-	
-	<select id="selectListByCategory1_num" resultMap="product">
-		select * from product where category1_num = #{category1_num} order by product_num desc
-	</select>
-	
-	<select id="selectListByCategory2_num" resultMap="product">
-		select * from product where category1_num = #{category2_num} order by product_num desc
-	</select>
-	
-	<select id="selectListByCategory3_num" resultMap="product">
-		select * from product where category1_num = #{category3_num} order by product_num desc
-	</select>
-	
-	<select id="selectListByProduct_writer" parameterType="String" resultMap="product">
-		select * from product where product_writer = #{product_writer} order by product_num desc
-	</select>
-	
-	<select id="selectListByProduct_nick" parameterType="String" resultMap="product">
-		select * from product where product_nick = #{product_nick} order by product_num desc
-	</select>
-	
-	
-	<update id="update" parameterType="com.example.with.product.Product">
-		update product set product_title = #{product_title}, product_price = #{product_price}, product_content = #{product_content} where product_num = #{product_num}
-	</update>
-	
-	<update id="updateHit">
-		update product set product_hit = product_hit+1 where product_num = #{product_num}
-	</update>
-	
-	<update id="updateType">
-		update product set product_type = #{product_type} where product_num = #{product_num}
-	</update>
-	
-	<delete id="delete">
-		delete from product where product_num = #{product_num}
-	</delete>
-	
-	<select id="selectSeqCurrval" resultType="int">
-		select seq_product.currval from dual
-	</select>
-	
-	<select id="selectByCategory1AndNickORTitle" parameterType="com.example.with.product.Product" resultType="com.example.with.product.Product">
-		select * from product where category1_num = #{category1_num} and product_nick like '%${product_nick}%' and
-		product_title like '%${product_title}%'
-	</select>
-	<select id="selectByCategory2AndNickORTitle" parameterType="com.example.with.product.Product" resultType="com.example.with.product.Product">
-		select * from product where category2_num = #{category2_num} and product_nick like '%${product_nick}%' and
-		product_title like '%${product_title}%'
-	</select>
+    <resultMap type="com.example.with.product.Product" id="product">
+        <result property="product_num" column="product_num"/>
+        <result property="product_writer" column="product_writer"/>
+        <result property="product_nick" column="product_nick"/>
+        <result property="product_title" column="product_title"/>
+        <result property="product_price" column="product_price"/>
+        <result property="product_content" column="product_content"/>
+        <result property="category1_num" column="category1_num"/>
+        <result property="category2_num" column="category2_num"/>
+        <result property="category3_num" column="category3_num"/>
+        <result property="product_type" column="product_type"/>
+        <result property="product_tradetype" column="product_tradetype"/>
+        <result property="product_add_date" column="product_add_date"/>
+        <result property="product_hit" column="product_hit"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.example.with.product.Product">
+        insert into product
+        values (seq_product.nextval, #{product_writer}, #{product_nick}, #{product_title}, #{product_price},
+                #{product_content},
+                #{category1_num}, #{category2_num}, #{category3_num}, 0, #{product_tradetype}, sysdate, 0)
+    </insert>
+
+    <select id="selectListSize" resultType="int">
+        select count(*)
+        from product
+    </select>
+
+    <select id="select" resultType="com.example.with.product.Product">
+        select *
+        from product
+        where product_num = #{product_num}
+    </select>
+
+    <select id="selectList" resultMap="product">
+        select *
+        from product
+        order by product_num desc
+    </select>
+
+    <select id="selectListByLimit" resultMap="product">
+        select *
+        from (
+                 select rownum as num, list.*
+                 from (select *
+                       from product
+                       order by product_num desc) list) data
+        where num between #{start} and #{last}
+    </select>
+
+    <select id="selectListByProduct_title" parameterType="String" resultMap="product">
+        select *
+        from product
+        where product_title like '%${product_title}%'
+        order by product_num desc
+    </select>
+
+    <select id="selectListByCategory1_num" resultMap="product">
+        select *
+        from product
+        where category1_num = #{category1_num}
+        order by product_num desc
+    </select>
+
+    <select id="selectListByCategory2_num" resultMap="product">
+        select *
+        from product
+        where category1_num = #{category2_num}
+        order by product_num desc
+    </select>
+
+    <select id="selectListByCategory3_num" resultMap="product">
+        select *
+        from product
+        where category1_num = #{category3_num}
+        order by product_num desc
+    </select>
+
+    <select id="selectListByProduct_writer" parameterType="String" resultMap="product">
+        select *
+        from product
+        where product_writer = #{product_writer}
+        order by product_num desc
+    </select>
+
+    <select id="selectListByProduct_nick" parameterType="String" resultMap="product">
+        select *
+        from product
+        where product_nick = #{product_nick}
+        order by product_num desc
+    </select>
+
+
+    <update id="update" parameterType="com.example.with.product.Product">
+        update product
+        set product_title   = #{product_title},
+            product_price   = #{product_price},
+            product_content = #{product_content}
+        where product_num = #{product_num}
+    </update>
+
+    <update id="updateHit">
+        update product
+        set product_hit = product_hit + 1
+        where product_num = #{product_num}
+    </update>
+
+    <update id="updateType">
+        update product
+        set product_type = #{product_type}
+        where product_num = #{product_num}
+    </update>
+
+    <delete id="delete">
+        delete
+        from product
+        where product_num = #{product_num}
+    </delete>
+
+    <select id="selectSeqCurrval" resultType="int">
+        select seq_product.currval
+        from dual
+    </select>
+
+    <select id="selectByCategory1AndNickORTitle" parameterType="com.example.with.product.Product"
+            resultType="com.example.with.product.Product">
+        select *
+        from product
+        where category1_num = #{category1_num}
+          and product_nick like '%${product_nick}%'
+          and product_title like '%${product_title}%'
+    </select>
+    <select id="selectByCategory2AndNickORTitle" parameterType="com.example.with.product.Product"
+            resultType="com.example.with.product.Product">
+        select *
+        from product
+        where category2_num = #{category2_num}
+          and product_nick like '%${product_nick}%'
+          and product_title like '%${product_title}%'
+    </select>
 </mapper>

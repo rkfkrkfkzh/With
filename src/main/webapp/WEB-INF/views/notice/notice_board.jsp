@@ -2,14 +2,14 @@
          pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="EUC-KR">
+    <meta charset="UTF-8">
     <title>with: 모두 함께 - 공지사항 목록</title>
     <c:import url="../head.jsp"></c:import>
-    <link rel="stylesheet" href="/static/css/product_list.css" />
+    <link rel="stylesheet" href="/static/css/notice_list.css"/>
 
 </head>
 <body>
@@ -22,12 +22,16 @@
                   method="get" onsubmit="return checkSearch()" id="nSearchForm">
                 <select class="form-select" name="q" id="q" aria-label="query">
                     <option ${q=='notice_title' ? 'selected' : '' }
-                            value="notice_title">공지 이름</option>
+                            value="notice_title">공지 제목
+                    </option>
                     <option ${q=='notice_num' ? 'selected' : '' }
-                            value="notice_num">공지 제목</option>
-                     <option ${q=='notice_date' ? 'selected' : '' }
-                            value="notice_date">작성일</option></select>
-                <input class="form-control" type="text" placeholder="검색..."
+                            value="notice_num">공지 번호
+                    </option>
+                    <option ${q=='notice_date' ? 'selected' : '' }
+                            value="notice_date">작성일
+                    </option>
+                </select>
+                <input class="form-control" type="text" placeholder="검색"
                        name="value" aria-label="검색"/>
                 <button type="submit" class="btn btn-outline-primary">검색</button>
             </form>

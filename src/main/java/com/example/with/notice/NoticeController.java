@@ -103,12 +103,18 @@ public class NoticeController {
             request.setAttribute("q", q);
             request.setAttribute("value", value);
             ArrayList<Notice> list = null;
-            if (q.equals("notice_title")) {
-                list = nService.getNoticeListByNotice_title(value);
-            } else if (q.equals("notice_num")) {
-                list = nService.getNoticeListByNotice_num(Integer.parseInt(value));
-            } else if (q.equals("notice_date")) {
-                list = nService.getNoticeListByNotice_date(Date.valueOf(value));
+            try {
+                if (q.equals("notice_title")) {
+                    list = nService.getNoticeListByNotice_title(value);
+                } else if (q.equals("notice_num")) {
+                    int notice_num = Integer.parseInt(value);
+                    list = nService.getNoticeListByNotice_num(notice_num);
+                } else if (q.equals("notice_date")) {
+                    Date notice_date = Date.valueOf(value);
+                    list = nService.getNoticeListByNotice_date(notice_date);
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
             }
             model.addAttribute("list", list);
             return "/notice/notice_board";
