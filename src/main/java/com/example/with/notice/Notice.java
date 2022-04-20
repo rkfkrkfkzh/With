@@ -1,5 +1,6 @@
 package com.example.with.notice;
 
+
 import java.sql.Date;
 
 public class Notice {

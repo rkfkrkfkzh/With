@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,7 +107,8 @@ public class NoticeController {
                 list = nService.getNoticeListByNotice_title(value);
             } else if (q.equals("notice_num")) {
                 list = nService.getNoticeListByNotice_num(Integer.parseInt(value));
-
+            } else if (q.equals("notice_date")) {
+                list = nService.getNoticeListByNotice_date(Date.valueOf(value));
             }
             model.addAttribute("list", list);
             return "/notice/notice_board";

@@ -24,8 +24,9 @@
                     <option ${q=='notice_title' ? 'selected' : '' }
                             value="notice_title">공지 이름</option>
                     <option ${q=='notice_num' ? 'selected' : '' }
-                            value="notice_num">공지 번호</option></select>
-
+                            value="notice_num">공지 제목</option>
+                     <option ${q=='notice_date' ? 'selected' : '' }
+                            value="notice_date">작성일</option></select>
                 <input class="form-control" type="text" placeholder="검색..."
                        name="value" aria-label="검색"/>
                 <button type="submit" class="btn btn-outline-primary">검색</button>

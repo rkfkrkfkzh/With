@@ -80,5 +80,12 @@
         where notice_num = '${notice_num}'
         order by notice_num desc
     </select>
+    <!--    공지 날짜로 검색-->
+    <select id="selectListByNotice_date" parameterType="Date" resultMap="Notice">
+        select *
+        from notice
+        where notice_date = '${notice_date}'
+        order by notice_date desc
+    </select>
 
 </mapper>

@@ -2,8 +2,8 @@ package com.example.with.notice;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -26,8 +26,10 @@ public interface NoticeMapper { // @Mapper 어노테이션을 붙이면 Mapper �
     // 원하는 목록 수 만큼 불러오고 페이징 기능과 연동
     ArrayList<Notice> selectListByLimit(int start, int last);
     // 공지 번호로 검색
-    ArrayList<Notice> selectListByNotice_num(int notice_int);
+    ArrayList<Notice> selectListByNotice_num(int notice_num);
     // 공지 제목으로 검색
     ArrayList<Notice> selectListByNotice_title(String notice_title);
+    // 공지 작성일로 검색
+    ArrayList<Notice> selectListByNotice_date(Date notice_date);
 
 }
