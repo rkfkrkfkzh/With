@@ -113,7 +113,7 @@ public class NoticeController {
                     Date notice_date = Date.valueOf(value);
                     list = nService.getNoticeListByNotice_date(notice_date);
                 }
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {  //illegalargumentexception에 numberformatexception 포함되며 RuntimeException이다
                 System.out.println(e);
             }
             model.addAttribute("list", list);
