@@ -46,26 +46,31 @@
             notice_content = #{notice_content},
             notice_num     = #{notice_num}
     </update>
-
+    <!--삭제될 num보다 높은 num을 -1-->
     <update id="sortDisplayNumber" parameterType="int">
         update notice
         set display_num = display_num - 1
         where notice_num > #{base}
-
     </update>
+    <!--display_num_max 값 조회-->
+    <select id="getMaxDisplayNumber" resultType="int">
+        select max(display_num)
+        from notice
+    </select>
 
     <!-- 삭제 -->
     <delete id="deleteNotice" parameterType="int">
         DELETE
         FROM notice
         WHERE notice_num = #{notice_num}
-
     </delete>
+
     <!--    공지 목록의 전체 갯수-->
     <select id="selectListSize" resultType="int">
         select count(*)
         from notice
     </select>
+
     <!--    원하는 목록 수 만큼 불러오고 페이징 기능과 연동-->
     <select id="selectListByLimit" resultMap="Notice">
         select *
@@ -76,6 +81,7 @@
                        order by notice_num desc) list) data
         where num between #{start} and #{last}
     </select>
+
     <!--    공지 이름으로 검색-->
     <select id="selectListByNotice_title" parameterType="String" resultMap="Notice">
         select *
@@ -83,6 +89,7 @@
         where notice_title like '%${notice_title}%'
         order by notice_num desc
     </select>
+
     <!--    공지 번호로 검색-->
     <select id="selectListByNotice_num" resultMap="Notice">
         select *
@@ -90,6 +97,7 @@
         where notice_num = #{notice_num}
         order by notice_num desc
     </select>
+
     <!--    공지 날짜로 검색-->
     <select id="selectListByNotice_date" resultMap="Notice">
         select *
@@ -97,6 +105,7 @@
         where notice_date = #{notice_date}
         order by notice_num desc
     </select>
+
     <!--    displaynum 으로 검색-->
     <select id="selectListByDisplay_num" resultMap="Notice">
         select *
@@ -104,9 +113,4 @@
         where display_num = #{display_num}
         order by notice_num desc
     </select>
-    <select id="getMaxDisplayNumber" resultType="int">
-        select max(display_num)
-        from notice
-    </select>
-
 </mapper>

@@ -2,147 +2,147 @@ package com.example.with.util;
 
 public class Page {
 
-	private int currentPage, range, listCnt, maxPage, startPage, endPage;
-	private boolean prev, next;
+    private int currentPage, range, listCnt, maxPage, startPage, endPage;   // 현재 페이지, 페이지 범위, 전체 개시물 개수, 최대 페이지, 시작 번호, 끝 번호
+    private boolean prev, next; //이전페이지, 다음페이지
 
-//	각 페이지에 표시할 제품의 개수 / 페이지 목록의 개수
-	private int listSize = 6, rangeSize = 10, startList;
+    //	각 페이지에 표시할 제품의 개수 / 페이지 목록의 개수
+    private int listSize = 6, rangeSize = 10, startList;
 
-	public Page() {
-	}
+    public Page() {
+    }
 
-	public Page(int currentPage, int listCnt) {
-		super();
-		this.currentPage = currentPage;
-		this.listCnt = listCnt;
-	}
+    public Page(int currentPage, int listCnt) {
+        super();
+        this.currentPage = currentPage;
+        this.listCnt = listCnt;
+    }
 
-	public Page(int currentPage, int range, int listCnt, int maxPage, int startPage, int endPage, boolean prev,
-			boolean next, int listSize, int rangeSize, int startList) {
-		super();
-		this.currentPage = currentPage;
-		this.range = range;
-		this.listCnt = listCnt;
-		this.maxPage = maxPage;
-		this.startPage = startPage;
-		this.endPage = endPage;
-		this.prev = prev;
-		this.next = next;
-		this.listSize = listSize;
-		this.rangeSize = rangeSize;
-		this.startList = startList;
-	}
+    public Page(int currentPage, int range, int listCnt, int maxPage, int startPage, int endPage, boolean prev,
+                boolean next, int listSize, int rangeSize, int startList) {
+        super();
+        this.currentPage = currentPage;
+        this.range = range;
+        this.listCnt = listCnt;
+        this.maxPage = maxPage;
+        this.startPage = startPage;
+        this.endPage = endPage;
+        this.prev = prev;
+        this.next = next;
+        this.listSize = listSize;
+        this.rangeSize = rangeSize;
+        this.startList = startList;
+    }
 
-	public int getCurrentPage() {
-		return currentPage;
-	}
+    public int getCurrentPage() {
+        return currentPage;
+    }
 
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
 
-	public int getRange() {
-		return range;
-	}
+    public int getRange() {
+        return range;
+    }
 
-	public void setRange(int range) {
-		this.range = range;
-	}
+    public void setRange(int range) {
+        this.range = range;
+    }
 
-	public int getListCnt() {
-		return listCnt;
-	}
+    public int getListCnt() {
+        return listCnt;
+    }
 
-	public void setListCnt(int listCnt) {
-		this.listCnt = listCnt;
-	}
+    public void setListCnt(int listCnt) {
+        this.listCnt = listCnt;
+    }
 
-	public int getMaxPage() {
-		return maxPage;
-	}
+    public int getMaxPage() {
+        return maxPage;
+    }
 
-	public void setMaxPage(int maxPage) {
-		this.maxPage = maxPage;
-	}
+    public void setMaxPage(int maxPage) {
+        this.maxPage = maxPage;
+    }
 
-	public int getStartPage() {
-		return startPage;
-	}
+    public int getStartPage() {
+        return startPage;
+    }
 
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
 
-	public int getEndPage() {
-		return endPage;
-	}
+    public int getEndPage() {
+        return endPage;
+    }
 
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
+    public void setEndPage(int endPage) {
+        this.endPage = endPage;
+    }
 
-	public boolean isPrev() {
-		return prev;
-	}
+    public boolean isPrev() {
+        return prev;
+    }
 
-	public void setPrev(boolean prev) {
-		this.prev = prev;
-	}
+    public void setPrev(boolean prev) {
+        this.prev = prev;
+    }
 
-	public boolean isNext() {
-		return next;
-	}
+    public boolean isNext() {
+        return next;
+    }
 
-	public void setNext(boolean next) {
-		this.next = next;
-	}
+    public void setNext(boolean next) {
+        this.next = next;
+    }
 
-	public int getListSize() {
-		return listSize;
-	}
+    public int getListSize() {
+        return listSize;
+    }
 
-	public void setListSize(int listSize) {
-		this.listSize = listSize;
-	}
+    public void setListSize(int listSize) {
+        this.listSize = listSize;
+    }
 
-	public int getRangeSize() {
-		return rangeSize;
-	}
+    public int getRangeSize() {
+        return rangeSize;
+    }
 
-	public void setRangeSize(int rangeSize) {
-		this.rangeSize = rangeSize;
-	}
+    public void setRangeSize(int rangeSize) {
+        this.rangeSize = rangeSize;
+    }
 
-	public int getStartList() {
-		return startList;
-	}
+    public int getStartList() {
+        return startList;
+    }
 
-	public void setStartList(int startList) {
-		this.startList = startList;
-	}
+    public void setStartList(int startList) {
+        this.startList = startList;
+    }
 
-	@Override
-	public String toString() {
-		return "Page [currentPage=" + currentPage + ", range=" + range + ", listCnt=" + listCnt + ", maxPage=" + maxPage
-				+ ", startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next
-				+ ", listSize=" + listSize + ", rangeSize=" + rangeSize + ", startList=" + startList + "]";
-	}
+    @Override
+    public String toString() {
+        return "Page [currentPage=" + currentPage + ", range=" + range + ", listCnt=" + listCnt + ", maxPage=" + maxPage
+                + ", startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next
+                + ", listSize=" + listSize + ", rangeSize=" + rangeSize + ", startList=" + startList + "]";
+    }
 
-	public void pageInfo() {
-		range = currentPage % listSize;
-		maxPage = (listCnt % listSize) == 0 ? listCnt / listSize : listCnt / listSize + 1;
-		startPage = currentPage / rangeSize * rangeSize + 1;
-		if (currentPage % rangeSize == 0) {
-			startPage -= 10;
-		}
-		endPage = startPage + rangeSize - 1;
-		startList = (currentPage - 1) * listSize;
-		prev = currentPage < 11 ? false : true;
-		next = endPage > maxPage ? false : true;
-		if (endPage > maxPage) {
-			endPage = maxPage;
-			next = false;
-		}
+    public void pageInfo() {
+        range = currentPage % listSize;
+        maxPage = (listCnt % listSize) == 0 ? listCnt / listSize : listCnt / listSize + 1;
+        startPage = currentPage / rangeSize * rangeSize + 1;
+        if (currentPage % rangeSize == 0) {
+            startPage -= 10;
+        }
+        endPage = startPage + rangeSize - 1;
+        startList = (currentPage - 1) * listSize;
+        prev = currentPage >= 11;
+        next = endPage <= maxPage;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+            next = false;
+        }
 
 //		// 전체 페이지수
 //		this.pageCnt = (int) Math.ceil(listCnt / listSize);
@@ -160,6 +160,6 @@ public class Page {
 //			this.endPage = this.pageCnt;
 //			this.next = false;
 //		}
-	}
+    }
 
 }

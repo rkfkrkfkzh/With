@@ -38,7 +38,7 @@ public class ProductController {
 	
 	@RequestMapping("/")
 	public String index(Model model) {
-		List<Product> list = pService.getProductListByLimits(0,8);
+		List<Product> list = pService.getProductListByLimits(0,100);
 		model.addAttribute("list", list);
 		return "index";
 	}
