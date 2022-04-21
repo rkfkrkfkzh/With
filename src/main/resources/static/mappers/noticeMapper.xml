@@ -43,7 +43,8 @@
             parameterType="com.example.with.notice.Notice">
         UPDATE notice
         SET notice_title   = #{notice_title},
-            notice_content = #{notice_content} notice_num = #{notice_num}
+            notice_content = #{notice_content},
+            notice_num     = #{notice_num}
     </update>
 
     <update id="sortDisplayNumber" parameterType="int">
@@ -96,7 +97,13 @@
         where notice_date = #{notice_date}
         order by notice_num desc
     </select>
-
+    <!--    displaynum 으로 검색-->
+    <select id="selectListByDisplay_num" resultMap="Notice">
+        select *
+        from notice
+        where display_num = #{display_num}
+        order by notice_num desc
+    </select>
     <select id="getMaxDisplayNumber" resultType="int">
         select max(display_num)
         from notice

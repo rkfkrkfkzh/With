@@ -112,6 +112,9 @@ public class NoticeController {
                 } else if (q.equals("notice_date")) {
                     Date notice_date = Date.valueOf(value);
                     list = nService.getNoticeListByNotice_date(notice_date);
+                } else if (q.equals("display_num")) {
+                    int display_num = Integer.parseInt(value);
+                    list = nService.getNoticeListByDisplay_num(display_num);
                 }
             } catch (IllegalArgumentException e) {  //illegalargumentexception에 numberformatexception 포함되며 RuntimeException이다
                 System.out.println(e);

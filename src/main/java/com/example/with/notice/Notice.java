@@ -4,20 +4,13 @@ package com.example.with.notice;
 import java.sql.Date;
 
 public class Notice {
-	
+
 	private int notice_num;
 	private String notice_title;
 	private String notice_content;
 	private Date notice_date;
 	private int display_num;
 
-	public int getDisplay_num() {
-		return display_num;
-	}
-
-	public void setDisplay_num(int display_num) {
-		this.display_num = display_num;
-	}
 
 	public Notice() {
 		super();
@@ -70,14 +63,23 @@ public class Notice {
 		this.notice_date = notice_date;
 	}
 
+	public int getDisplay_num() {
+		return display_num;
+	}
+
+	public void setDisplay_num(int display_num) {
+		this.display_num = display_num;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Notice [notice_num=" + notice_num + ", notice_title=" + notice_title + ", notice_content="
-				+ notice_content + ", notice_date=" + notice_date + "]";
+				+ notice_content + ", notice_date=" + notice_date + ", display_num=" + display_num +"]";
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

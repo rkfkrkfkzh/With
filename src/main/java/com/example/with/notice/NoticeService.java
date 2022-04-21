@@ -79,6 +79,11 @@ public class NoticeService {
     public ArrayList<Notice> getNoticeListByNotice_date(Date Notice_date){
         return setNoticeData(mapper.selectListByNotice_date (Notice_date));
     }
+    //display_num으로 검색
+    public ArrayList<Notice> getNoticeListByDisplay_num(int display_num){
+        return setNoticeData(mapper.selectListByDisplay_num(display_num));
+    }
+
     //전체목록 갯수단위,페이징기능
     public ArrayList<Notice> getNoticeListByLimits(int start, int last) {
         return setNoticeData(mapper.selectListByLimit(start, last));

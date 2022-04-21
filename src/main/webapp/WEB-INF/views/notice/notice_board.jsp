@@ -24,8 +24,8 @@
                     <option ${q=='notice_title' ? 'selected' : '' }
                             value="notice_title">공지 제목
                     </option>
-                    <option ${q=='notice_num' ? 'selected' : '' }
-                            value="notice_num">공지 번호
+                    <option ${q=='display_num' ? 'selected' : '' }
+                            value="display_num">공지 번호
                     </option>
                     <option ${q=='notice_date' ? 'selected' : '' }
                             value="notice_date">작성일

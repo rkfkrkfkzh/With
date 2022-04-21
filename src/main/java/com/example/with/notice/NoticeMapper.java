@@ -31,6 +31,8 @@ public interface NoticeMapper { // @Mapper 어노테이션을 붙이면 Mapper �
     ArrayList<Notice> selectListByNotice_title(String notice_title);
     // 공지 작성일로 검색
     ArrayList<Notice> selectListByNotice_date(Date notice_date);
+    // display_num으로 검색
+    ArrayList<Notice> selectListByDisplay_num(int display_num);
 
     Integer getMaxDisplayNumber();
 
