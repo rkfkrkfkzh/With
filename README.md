@@ -3,15 +3,19 @@
 ## Introduction
 
 > Spring boot 를 사용하여 중고거래 웹 어플리케이션을 제작한다.
+
+
 ## 1. Entity Relationship Diagram
 
 ![1](https://user-images.githubusercontent.com/86057607/174211944-21889f0b-f764-4ed0-b909-80afffbbe448.png)
+
 
 ## 2. Class Diagram
 
 
 
 ## 3. 기술
+
 
 ### **SpringBoot**
 
@@ -25,16 +29,22 @@
 - JQuery
 - jsp
 
+
 # 4. 설명
+
 
 ## [1] 회원가입
 
 ![회원가입](https://user-images.githubusercontent.com/86057607/174213697-4c53b9d9-9b25-4a5b-a41c-17f71a809a78.png)
 
 이메일 형식이 아니면 재입력을 해야합니다.
+
 비밀번호 요구사항에 맞지 않을시 재입력을 해야합니다.
+
 휴대폰번호는 `정규식`을 이용하여 `자동 하이폰 처리`를 하였으며 010, 011 등 휴대폰 번호와 맞지 않을시 재입력을 해야합니다.
+
 가입시 사용자와 관리자용으로 나뉘어 회원가입을 합니다.
+
 
 ## [2] 공지사항 게시판
 
