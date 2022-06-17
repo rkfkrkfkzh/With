@@ -5,7 +5,7 @@
 > Spring boot 를 사용하여 중고거래 웹 어플리케이션을 제작한다.
 ## 1. Entity Relationship Diagram
 
-![readme%20da68657836ec4ff89723b46bbaf27ba3/erd.png](readme%20da68657836ec4ff89723b46bbaf27ba3/erd.png)
+![1](https://user-images.githubusercontent.com/86057607/174211944-21889f0b-f764-4ed0-b909-80afffbbe448.png)
 
 ## 2. Class Diagram
 
@@ -29,31 +29,32 @@
 
 ## [1] 회원가입
 
-![readme%20da68657836ec4ff89723b46bbaf27ba3/1.png](readme%20da68657836ec4ff89723b46bbaf27ba3/1.png)
+![회원가입](https://user-images.githubusercontent.com/86057607/174213697-4c53b9d9-9b25-4a5b-a41c-17f71a809a78.png)
 
-![readme%20da68657836ec4ff89723b46bbaf27ba3/2.png](readme%20da68657836ec4ff89723b46bbaf27ba3/2.png)
+이메일 형식이 아니면 재입력을 해야합니다.
+비밀번호 요구사항에 맞지 않을시 재입력을 해야합니다.
+휴대폰번호는 정규식을 이용하여 자동 하이폰 처리를 하였으며 010, 011 등 휴대폰 번호와 맞지 않을시 재입력을 해야합니다.
+가입시 사용자와 관리자용으로 나뉘어 회원가입을 합니다.
 
-소개팅에 필요한 프로필 및 원하는 이상형을 입력받아 회원가입을 합니다.
+## [2] 공지사항 게시판
 
-## [2] 메인 게시판
+![공지사항 관리자 목록](https://user-images.githubusercontent.com/86057607/174213699-f419b930-9a88-4ff1-9ff1-490a4eb7840b.png)
+![공지사항 관리자 삭제권한](https://user-images.githubusercontent.com/86057607/174213702-02e93ad3-b46d-4bbc-b433-c3f9ccb1c684.png)
 
-![readme%20da68657836ec4ff89723b46bbaf27ba3/3.png](readme%20da68657836ec4ff89723b46bbaf27ba3/3.png)
+공지사항 목록을 표시하며 페이징 처리를 하였으며 공지사항 번호를 내림차순으로 하였습니다.
+관리자는 공지를 삭제할 권한이 있습니다. 
+삭제시에는 공지 번호가 재정렬상태로 정리됩니다.
 
-![readme%20da68657836ec4ff89723b46bbaf27ba3/4.png](readme%20da68657836ec4ff89723b46bbaf27ba3/4.png)
 
-연애 및 소개팅과 관련된 내용을 자유롭게 게시할 수 있도록 하였습니다. 
+![공지사항 유저 삭제권한](https://user-images.githubusercontent.com/86057607/174213816-9ada9c4e-8944-4e82-9186-8bfe61b15769.png)
 
-`댓글 시스템`과 `게시물 좋아요` 기능을 구현하였습니다.
+일반 유저는 삭제 불가합니다.
 
 ## [3] 매칭 서비스
 
 ![readme%20da68657836ec4ff89723b46bbaf27ba3/5.png](readme%20da68657836ec4ff89723b46bbaf27ba3/5.png)
 
-소개팅은 **1주일에 한번씩 일괄적**으로 진행되며, 소개팅 신청을 한 회원들 사이에서 이루어집니다.
 
-`소개팅 신청하기→` 버튼을 눌러 소개팅을 신청할 수 있고, 소개팅이 진행되는 날까지 남은 시간이 상단 보라색 패널에 표시됩니다.
-
-후 에, `결과확인→` 버튼을 통해 소개팅 결과를 조회할 수 있고, 소개팅이 매칭된다면 상대방 카카오톡 ID를 알 수 있습니다.
 
 ## [4] 마이페이지
 
